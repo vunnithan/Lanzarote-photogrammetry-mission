@@ -1,0 +1,207 @@
+----------------------------------
+*** Emlid Reach Kit Contents ***
+----------------------------------
+
+2 x Reach Module
+2 x Tallysman TW4721 antenna
+2 x DF13 to DF13 straight cable
+2 x DF13 to jumper wire cable
+2 x Micro-USB to USB cable
+2 x Micro-USB Female OTG cable
+
+---------------------------------
+*** Setup Materials ***
+---------------------------------
+
+Computer with	Admin rights, internet access, and a wifi network card. 
+Wifi network with password and corresponding network protocol (i.e. WEP,WPA,...)
+1 free USB port on computer
+1 free wall power receptacle near your computer
+USB wall outlet charger (any phone wall charger with an USB plug and output of 5 volts). Most phone charges with an USB port should work.
+Masking tape and marker (used to label Reach Modules)
+
+-----------------------------------
+*** Connecting to Reach Module ***
+-----------------------------------
+
+Power your Reach module with a micro USB cable.
+The Reach Module should begin flashing red, blue, and green  on the same face as the Micro-USB port. 
+Once the Reach Module led shows a solid green led, the Reach Module has begun hosting its own wifi network.
+The created wifi network will be named "reach:37:97" or something very similar and always will begin with "reach:".
+Connect your computer to the newly created Reach wifi network.  The password should always be "emlidreach" with no spaces.
+Once connected, your computer will notify you that the network has no internet access.  This is ok as the Reach Module only uses wifi as a way to host its own application.
+Open your browser and go to 192.168.42.1:5000.
+This should take you to a page with Intel and Edison Setup in the title.
+Under the Change Device Name section next to New Device Name: type in "Rover_Reach".
+Under the Connect to a Wifi Network section next to Network Name: type in the name of the wifi network you have access to exactly as it appears under the computers wifi network settings.
+Just below Network Name should be Network Protocol: where you should select the appropriate option given the type of protection on your network.
+Note that if you select any network protocol other than "Open" a new bow will appear under Network Protocol named Password: prompting you to enter your network password.
+Once you have the correct data entered in all of the prompt box's hit the "Submit" box. The page should refresh with the title Leaving Setup and a progress bar will begin to build. The progress bar will begin as green as it grows from left to right across the screen. 
+Note that the Reach Module has been renamed and now host a unique address, http://Rover_Reach.local, as shown on the page as a hyperlink.  Please take note of this name for future use.
+Near the end of the progress bar, right side of the screen, the bar will turn red.  This is expected as the firmware loaded onto the Reach Module is different to what the onboard Intel Edison chip is use to seeing.
+Directly under the progress bar you will read "Sorry, could not reach your device".  This is indicating that the custom firmware has been loading and your Reach Module is ready for use.
+Unplug and repower the Reach Module to force it to restart.  It should begin blinking a combination of red, blue, and green lights.
+Once the Reach Module shows a solid green light for a few seconds, it will be connected to the wifi network you entered in step 14.
+Open a new tab in your internet browser and type in the unique address created and shown in step 19.
+The page should be directed to the Reach View App.  This is how you will communicate to all Reach Modules when collecting data.
+Now that we have the Reach Rover setup we need to repeat the above steps to setup the Reach Base.
+Following steps 1-12 exactly will take you back to the Intel Edison Setup page.
+Continuing on step 13, we will name the 2nd Reach Module as Base_Reach in the New Device Name prompt.
+Continue exactly as before with the remaining prompts.
+When finished, hit the "Submit" button.  The page will again automatically refresh with the title Leaving Setup and the progress bar will continue as before.
+Again note the new name of your Reach Module, http://Base_Reach.local, to the upper right of the progress bar.
+When the progress reaches the far right of the screen and states "Sorry, could not reach your device" you have completed the setup.
+Repeating steps 22-25 will ensure the Base Reach Module is ready to begin data collecting.
+Note: Both Reach Modules may be used as either a base station or a rover on your aircraft.  We named them Rover and Base to help differentiate the in the field and any 5 letter name you wish may be used.
+Stick masking tape on each Reach Module.  Use a marker to name them Base and Rover to identify them in the field.
+If you wish to know the IP addresses of each device, we recommend downloading a free application called "FING" from your smart home app store.  It will allow you to view all devices connected over your wifi network and gives their individual IP addresses. 
+Each Reach Module will also have an individual IP address you may type in to your internet browser instead of the .local address when you are working over a your wifi network.  If you use a mobile device when configuring a Reach Module, an IP address tends to be much easier to use.
+
+--------------------------------
+*** Updating Reach Module ***
+--------------------------------
+Power up on or both Reach Modules via a 5 volt power source such as a phone charger within range of the wifi network used to set the modules up in the previous part.  Note, the Reach Module needs a wifi network with an active internet connection to update.
+Allow each Reach Module to cycle through the red, blue, and green led sequences until a solid green led is shown for a few seconds.  The solid green led indicates that the Reach Module's wifi chip has connected to a known wifi network.
+Launch the internet browser on your computer and type in  the name created during initial setup ( http://Rover_Reach.local or http://Base_Reach.local ) or the IP address you  obtained using the FING app on your smartphone. 
+Once connected you should see the Reach View App on you screen with 4 different tabs on the top; Status, Config, Logs, and finally settings represented by a gear symbol.
+Click the gear symbol on the far right to enter the settings of the Reach Module. 
+You should see two gray blocks once the settings page has loaded.
+Click the "Update" button on the second gray block labeled "Current Version: v #.#.#" to begin updating your Reach Module to the latest version.  More than likely your Reach Module will be shipped to you out of date.
+ A countdown timer will appear to the right of the button.  Allow the timer to count all of the way down and wait for a prompt telling you to refresh the page.
+Refresh the webpage and click back onto the settings gear button.
+Your Reach Module should now have much more options under the settings tab including; Network, Bluetooth, Rinex Version, ReachView Version, Reach Image Version, and Reboot.
+Ensure the following are at the current versions before proceeding to the next step.
+Rinex Version: 3.01
+ReachView Version: v0.4.9
+Reach Image Version: 1.2
+If any of the 3 Versions are below what is listed please make the appropriate changes are made and reboot the module using the "Reboot" button at the bottom of the settings page.
+Once both Reach Modules are updated, you may move on to the next part.
+
+----------------------------------
+*** PPK Configuration Setup ***
+----------------------------------
+
+Power up and connect to your Reach Module via the steps in the Updating Reach Module section above.
+Open your computers web browser and connect to the Reach Module using its unique address or IP address.
+Once connected and on the ReachViewApp click the Config tab found on the top middle of the page. 
+On the Config page, click on and select the Rover box.
+Next, click the dropdown arrow and select the "reach_single_default.config" option.
+Moving down the page you will see a verity of new option. These options should match as given below:
+Position Mode: static
+Used positioning systems: gps, sbas, glo
+Dynamics model of the rover(kinematic and dgps only): off
+u-blox configuration file: GPS_GLONASS_5Hz
+Input source for base corrections: off
+Input format for base corrections: rtcm3
+Solution 1 output path: file
+Solution 1output format: llh
+Solution 2 output path: off
+Solution 2 output format: llh
+Raw data log for onboard receiver: file
+Raw data log for base corrections: off
+Base antenna coordinates: rinexhead
+Advanced settings should be left alone at their defaults.
+Once everything on the page matches the settings above, hit the "Save" button on the top left on the screen.  A window will pop up titled "Save Config" with the question asking "Do you want to load the current config after save?".  Click yes and the window will disappear. 
+Note that the Reach Module will switch into collection mode.  You must hit the "Stop" button at the top left of the page to cancel the data collection.
+You should be ready to move onto the next step.
+
+------------------------------
+*** Testing Reach Module ***
+------------------------------
+
+Move to an outside location while remaining in range of your wifi network.  You will need as much open sky as possible for testing the Reach.  Please avoid setting up under trees, building overhangs, power lines, or any object that may interfere with a GPS signal.
+Plug in the provided Tallysman TW 4721 antenna from the Reach Kit into the antenna port on the Reach Module.
+Provide power to the Reach Module via a 5 volt source and the Micro-USB port on the Reach itself.
+Once powered, the Reach Module should begin the usual sequence of red, blue, and green flashes from the led.  As before wait for a solid green light to appear for a few seconds.
+After viewing the green led, go to your computer on the same wifi network and connect to the Reach Module using your internet browser and the address for the device.
+You will see the familiar ReachViewApp appear on your screen.  Click the Config tab and make sure the options you previously selected from "PPK Configuration Setup" are still the same.  It is always go to skim through these options every time to ensure all of your settings are correct to avoid wasting field time by having one option incorrect.
+If all options look correct, click the "Start" button on the top left of the screen.
+Once you have started the Reach click the "Status" tab on the top left of the screen.  This will give you a live view of satellites the antenna can currently view.
+Next, click the "Logs" tab on the top right of the screen.  The data collected from the Reach is store in its onboard memory.  By clicking off of the Logs tab onto another tab and back to Logs you are able to verify that the Reach is actually collecting data.  The file we are interested in it the Rover file and should be the only file you will use.  Note the time stamp to the left of the Rover file under logs will more than likely not match that of your time zone.
+After verifying that that Reach module is logging data under the Rover file, please repeat steps 1-9 for the other Reach Module.
+You should now be ready to start collecting data in the field.
+
+--------------------------------------
+*** Base Station Data Collection ***
+--------------------------------------
+
+When preforming PPK data collection you must use a base station.  The base station location must either be on a known point (known Latitude, Longitude, Height) such as a land survey control point or you may create a base station point from any location with an open sky view.  It is recommended that all base station locations be in wide open areas with as little sky with blocked as possible.  Every tree, power line, or building will limit and my skew your data.  We prefer to set our base station in open fields or on top of an elevated position if possible.  If you are trying to make an orthomosaic map, you may use the base station data collection process to set ground control for your photo.  Later on we will show an example of a flight were the process below was used to create ground control points for our orthomosaic photo.  Please also note that the objects listed above along with water and even tall grass around your base station collection point may introduce multipath problems when you move on to the post processing steps. 
+
+Items Needed
+
+Laptop or smartphone with wifi card/ chip.  Laptop is recommended.
+5 volt power source with a USB port. May use laptop or smartphone.
+USB to Micro USB cable for powering from laptop
+Micro-USB Female OTG cable is powering from smartphone
+Ground Plane of at least 120mm x 120mm square
+Tape for holding down Reach Module if windy (non metallic)
+Either Reach Module may be used for collection
+A ground plane of at least 120mm x 120mm should be used along with the Tallysman 4721 antenna from the Reach Kit.  The company that creates the Reach Kit has some in-depth forum post covering the topic of ground planes and their sizes Emlid Forums
+Once you have decided on a ground plane and mounted the antenna on it, place the ground plane/ antenna setup on your chosen base station location.  Remember if possible to pick a location that will fall within the orthomosaic photo if you are going to fly one.  Note that base station locations may be used an endless amount of times and allow you to quickly collect field data later after the base location has been determined.
+Once the ground plane and antenna or in a good location, carefully connect the antenna male end into the female end on the Reach Module.  You may want to use some sort of tape to hold down the ground plane if you are collecting in windy conditions.  The Reach Module should not be on the ground plane as the antenna is the only device collecting the GPS signals. 
+Next, power the Reach Module using a 5 volt power source.  It is best to use a power source the enables you to power the reach from the Micro-USB port as the DF-13 plugs can be damaged easily.
+Once powered, allow the Reach Module to run through its red, blue, and green led flashing sequence until it shows a solid green light for several seconds.  This can take up to 60 seconds or longer as the Reach is looking for a known wifi network to communicate with.
+Unlike the setup processes before you will be working off of the Reach Module's own hosted wifi network.  The Reach only creates a network for communication purposes and does not actually allow you to surf the internet.
+The Reach hosted network should become available once the green led lights up for several seconds.  On your computer select view wifi network and look for a new network called Base_Reach:37:97.  The numbers following the ":" may be different for you.  once you connect you will be prompted for a password.  As before the password should always be "emlidreach" all one word.
+After connecting you should open up your internet browser on your phone or computer.  Once connected type in "192.168.42.1" into the web address and hit search.  Note that you must be connected to the Reach hosted network or you will just return a search for the IP address.
+If done correctly the ReachViewApp should appear on screen.  This should look familiar from the previous steps above.
+Now click  the Config tab and as before, check all options to make sure they match those from the "PPK Configuration Setup".
+If correct, click the start button and then click the "Status" tab.  You should see satellites start to appear and show yellow and green bars in the graph.  Note that the numbers on the screen will continually change and should not worry you.
+Click the "Logs" tab to ensure a new log file has been created.  Click off the Logs tab onto either Status or Config and back to the Logs tag to make sure the log file is growing in size.
+If the Rover file under the Logs tab is getting bigger you have correctly set everything up. 
+The longer you let the Reach Module collect data on a single point without being disturbed, the more accurate the data will more then likely be after processing.  A good time frame is to allow the Reach Module to collect data from at least 30 minutes.  Later on we will go over flying missions while collecting base station data simultaneously.
+Once you feel you have collected enough data go back the to Config tab and click the "Stop" button to stop the Reach Module.  Make a note of the time stamp and date of the Rover file you have just collected.  You may remove power from the Reach Module and head back to the office or repeat the process on another base station location for later use.
+
+---------------------------------------
+*** Base Station Post Processing ***
+---------------------------------------
+
+Along with a step by step workflow on how to process your data, we will also provide an example data set files you to work along with.  This should allow the user to practice and compare their own workflow to that of a known data file set to ensure the understanding of the steps below.  Understand that some of the data you will need to complete this process is provided by government entities and may take up to 24 hours to post to their website. 
+
+Items Needed
+
+Computer with wifi internet access
+RTKPOST and RTKPLOT from the Emlid website (ver2.4.3 b16)
+Configuration files for RTKPOST
+Reach Module you collected the base station data with
+5 volt power supply with USB to Micro-USB
+Program such as 7zip or winrar to extract compressed folders
+Power up the Reach Module with a 5 volt power supply via the Micro-USB port.
+Allow the Reach to cycle through the red, blue, and green led lighting sequence until it shows a solid green led for a few seconds.
+Open your internet browser and connect to the Reach using its unique IP address.
+Once connected, click on the Logs tab to the upper right hand side of the screen.
+Find the Rover log from the correct time and date you collected the base station data from.
+Now you click on the word Rover and allow the Reach to convert your base station data to a Rinex file.  Once the download is complete you should see a .zip file in the download folder of your computer. (Ex: rov_201610042242.zip)
+Now you need to set up a working location for all of your Reach files.  For this example we will just use the desktop.
+On your desktop, right click and create a new folder.  Title the folder Reach_Logs.  Once created, open the folder and create a new folder with the title of the date you collected the data (ex. 10_04_2016). Now open the dated folder and create one more new folder dated Base.  This may seem like a lot of work for one set of files, but once you start collecting a larger number of file set you can easily become inundated with data.
+Go back to the download location of your Rover .zip file.  Right click the file and extract it to the Base folder you created at the end of step 8.
+Under items needed above you should see a hyperlink that takes you to the Emlid website.  This webpage will display to programs you need to download.  The first being RTKPOST which you will use to process the collected data and secondly a program titled RTKPLOT which as the title suggest plot the processed data.  Open both of these programs and ensure you are running ver2.4.3 b16 for both programs as shown on the top bar of each.
+Now you will need to go back to your internet browser to collect two different sets of data.  Depending on what country you live in, you may have to go to different website.  We will be working under the idea that you are in the United States but will also cover what to do if you are outside of the USA.
+First you will need to find the closest Continuously Operating Reference Station (CORS site) to the area you collected your base station data.  In the USA the National Geodetic Survey (NGS) under the National Oceanic and Atmospheric Administration (NOAA) run such sites across the USA and several other countries.  Most countries around the world have such site run by the government and should be free of charge to use.
+Click here to go to the NGS CORS site map.   Once the page has loaded, find the location of the closest CORS site to where you collected your base station data.  We will be using the CORS site TXBO which is located on the Northern side of Boerne, Tx and within 10 Km of the location we collected our base station data.
+Once you find the closest site, click on the site location name in the pop up window.  This should redirect you to the CORS site page.  On this page you may find all types of data available on the site in question. On the left hand side find the link labeled Standard Files and click the link.  You will be redirected to another page again showing all of the sites NGS runs titles CORS Data- Standard Download. 
+On this page, select the appropriate options for the site ID you selected in step 13 under the column titled SITE. Under the column titled OPTION select RINEX Data.  Finally on the far right of the page, select the appropriate options for the year, month, and day you collected the base station data.  Note that CORS data will not be available until the following day.  For our example, we will use the follow; site:TXBO, option: RINEX Data, Year:2016, Month: October, and Day: 04. 
+Once you fill out the page to match the data and site location, click the find files button at the bottom center of the page.  You will be redirected to a page with a large list of file.  This page will list several different file types, we will be focused on finding the .16o.gz file.  This file contains a days worth of data collection from the CORS static site.  Think of it as a base station you are comparing your own base station location to.  For our example we will click and download the file titled txbo2780.16o.gz. 
+As before with the Rover file from the Reach Module, the CORS site file is a compressed file type that will need to be unpacked.  Find the .16o.gz file on you computer you downloaded in step 16, right click it and then send it to the folder you labeled with the date.  Make sure to send it to the dated folder and not inside of the Base folder.
+Now you need to download precision clock data from another site run by International GNSS Service (IGS).  Like the data collected from the NGS CORS site, IGS takes up to 24 hours to post a rapid solution.  You must know the GPS day to correctly find the date you will need from IGS.  Go to the website linked HERE to find the GPS date of your collected data. for example, the date we are using is October 04, 2016.  We find the date on the calendar and take note of the first row (1917:2).  The first 4 digits mark the GPS week (1917)we fall in followed by the day of the week (2).
+Now click the link HERE to go to the IGS website that contains recent clock data broken down by weeks and days.  Find the correct week and day as we found in step 18, then click the date that matches your collection date.  The downloaded file will be a .sp3.Z file type.  For our example we will be using file igr19172.sp3.Z (downloaded files name should match your GPS date from step 18). Note that you may see files on this page before they are fully ready for use.  We recommend waiting for RAPID solutions to post and avoid using others such as ULTRA unless you have experience doing so.
+As before, the .sp3.Z you downloaded is a compressed file type and needs to be extracted.  Find the downloaded .sp3.Z file and extract it to the dated file you created previously.
+Now you are finally ready to process your collected base station data.  Find and open the RTKPOST.exe you downloaded from the Emlid website (ensure the header says RTKPOST ver2.4.3 b 16).  You will also need the configuration file labeled BaseCorrection.conf.
+Once opened, click the Options button on the bottom right of the screen.  In the pop up window click the load button.  Now find the file provided labeled BaseCorrection.conf.  This should load settings you will need to correctly process your base station data.  Go through and double check that the settings under each tab match those of the pictures below.  If they match you may move on too the next step.  If not, please make the correct changes.  Hit the OK button to use these settings.
+You should now be back on the main page of RTKPOST.  In the first row click the box to the right with the three dots to open the file explorer.  Once opened, find the Base folder you extracted the Rover data to in step 9. Open the RINEX folder and inside you should see a .obs (ex. rov_201610042242.obs). Select the file and hit open.  You will now see a directory link to the file you just selected in the first row.
+Moving down to the second row, we need to select the .16o file  we downloaded from NGS.  Again click the box with the three dots to open the file explorer, open the dated folder, selected the .16o file we extracted earlier (ex. txbo2780.16o).
+Moving to the third row, you now need to find the navigation file or .nav from the base station data.  Click the box with the three dots to open the file explorer, find the RINEX folder inside of the Base folder again, and now you should see a similar titled file as step 23 but with a .nav extension.  Select  and open this file (ex. rov_201610042242.nav).
+Moving down to the forth row, you need to find the clock data file or .sp3 file.  Click the box with the three dots to open the file explorer, find the dated folder, select the .sp3 file from step 20.  Select and open the file (ex. igr19172.sp3).
+You must now select and create a file location for your processed solutions.  The last row in RTKPOST tells the program what to name the corrections and where to put them.  Select and delete any file name that RTKPOST may have generated automatically in the last row.  Now as before click the box with the three dots to the right to open the file explorer.  A box should open with the title Output File.  Make sure you are inside on the Base folder.  On the bottom of the page you will see a row with the title File name:. Fill in the corresponding field with the output file name you desire (ex. BaseCorrections). Now hit the save button.
+You should be back on the main RTKPOST page.  You are now ready to process the data.  Hit the Execute button and allow RTKPOST to run through the data.  Note that you are only using a small portion of the GPS clock and NGS CORS data.  RTKPOST will more than likely say (Not Responding) on the top.  This is ok as the program is still running.  Within a few minutes of hitting the Execute button, a green status bar will appear on the bottom of RTKPOST.
+Once RTKPOST has completed processing, the top of the status bar will say Done.  You may now click the Plot button on the bottom right of the window.
+RTKPLOT should open automatically when you click the Plot button in RTKPOST.  Once in RTKPLOT, click view and then options.  You will need to change a few settings before proceeding.  In the Options window that appears, ensure that all of the settings match those of the picture below.  The most important option being Coordinate Origin: Average Position.  This will take an average of the points collected and output an average location for you to use.  If done correctly, your data should fall within a few cm's square, or if using the example data, an area of 3mm x 5mm.
+You are looking for a tight group of green dots on your plot.  Green dots represent a fixed location after corrections have been applied.  If you are showing something other than green dots (yellow or gray) we will go over several options for you to take under  the tips section.
+Back on the main page of RTKPLOT you should see a group of data in the upper right side of the window.  ORI = is you calculated base station location that has been processed.  (ex. ORI = 29.889322478 N, 98.819829697 W, 254.4809 m)
+You can use the ORI = as your base station location. You have completed the base station data processing steps.
+Base Station Data Processing Tips
+
+RTKPLOT will visually show you the health of the data you collected for you base station.  There are three colors of dots RTKPLOT uses; Green (Q=1) fixed location, Yellow (Q=2) float location, Gray (Q=5) bad location data.  If RTKPLOT displays any color other than green dots you have several options.
+You may go back the RTKPOST and rerun the data set with a different elevation mask.  The default one you use is 15 under the BaseCorrections.conf file.  Go back to RTKPOST, click the Options button on the bottom, under the Settings 1 tab change  the Elevation Mask from 15 to 10. Hit ok to close the options and hit the Execute button on the main page of RTKPOST.  If it doesn't improve the data trying using different Elevation Mask until you get obtain results. (ex. 10, 20, or 25).
+Look to see if the bad data is at the beginning or end of the collection data set.  If so you can change the start and end times of RTKPOST at the top of the main page.
+Worst case scenario is that you will have to repeat the base station collection process.  You may need to pick a better location for your base station or switch to a better ground plain to prevent multipath.  Try to avoid setting up near water, tall grass, and areas with large sections of the sky view blocked.
