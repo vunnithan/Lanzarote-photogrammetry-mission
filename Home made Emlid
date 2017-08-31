@@ -1,0 +1,15 @@
+Switch on the RS module. When the network (blue) light changes the flashing mode, the own network of the module is established. 
+The name of the network will be "reach:99:00" (the numbers sometime change). Connect your computer to that network.
+Open http://reach.local. On this page it's possible to add a new network (from your personal hotspot is better). 
+After you insert the new network, click on it and the Reach device will try to connect to that network. After few seconds, connect also the
+computer to that network. 
+Now you should see the configuration, the projects and other tools on http://reach.local (or IP address of the module).
+
+Then, repeat exactly the same process with the RTK module. 
+
+===========================================================================================================================================
+
+If you ar using PiZaroBeta (from Angelo) or everytime you connect after the first time, you shouldn't need to repeat all the steps, 
+but just connect to the network and open IP address or http://reach.local.
+
+===========================================================================================================================================
