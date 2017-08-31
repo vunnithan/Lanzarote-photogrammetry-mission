@@ -10,3 +10,6 @@ For the drone DJI Phantom 4 the limit for a single survey is 99 waypoints (due t
 
 Then, you can upload the mission on the drone.
 
+Phase #3: In order to obtain a lesser degree of uncertainty, some attempts to involve the Reach modules (one RS and one RTK, since the other RTK is not working at the moment) have been made.
+A file with the instructions to connect the modules is available ("Emlid info" is the name of the file) but actually this manual seems to follow a different interface from the one we are using. For this reason I wrote another file with all the steps I did with Ramiro ("Home made Emlid" is the name of the file).
+
