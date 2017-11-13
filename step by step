@@ -1,0 +1,79 @@
+-----------------------------------
+UGCS
+-----------------------------------
+1) Upload the route on the drone
+2) Download images and load them on Pix4D
+3) You can choose to insert GCP before or after the processing
+
+-----------------------------------
+EMLID REACH
+-----------------------------------
+1) Check if there are available updates for the modules
+2) Set the modules:
+    - Connect to the network of the base. Open reach.local
+    - Go to "Wi-fi networks" and select your network. Apply 
+    - Connect to the rover network and go to reach.local
+    - Go to "Wi-fi networks" and select your network. Apply
+    - Connect to your network. Find the IP address of the modules (for example using the app Fing)
+    - In two separate tabs open the IP addresses of the modules and choose your favourite settings (FIX vs SINGLE vs FLOAT solution and so on)
+    - If the modules are connected each other, on the base tab you should see also grey bars in the satellites detector.
+3) Start a new project. Collect data and stop when the collection is done.
+4) Go to the Logging section and download your data (you will need just the raw data, both from base and rover, but if you want to be sure
+   you can download all of them (correction, solution..)
+   
+------------------------------------
+EMLID POST-PROCESSING
+------------------------------------
+The documentation with images is available on: https://docs.emlid.com/reach/common/tutorials/gps-post-processing/
+
+- Start RTKLIB RTKCONV after downloading raw files from Reach to your PC.
+
+- Add your rover raw log in the first field and choose output directory.
+- Choose format of your log in pop-down menu. Set format to u-blox if logs downloaded from each device. Otherwise, choose RTCM3 if base and rover logs were received from rover.
+
+Push "Options" button.
+Choose "RINEX Version" 3.03.
+Turn on "Satellites Systems" you need.
+Press "OK" and "Convert" after.
+
+- Now you should repeat the same with base log. Don't forget to change format. After that you'll see something similar in your output folder.
+
+- Start RTKLIB RTKPOST software and enter the fields as shown here. If running for the first time you will need to set mode to Kinematic or Static in the options to unlock the fields for base station data. You can skip the start time, it is not compulsory.
+
+Choose rover .obs file for the Rover field (RINEX file from your rover).
+Select base station .obs file for the Base Station field (RINEX file from your base).
+Put base or rover .nav file in the third field.
+(Optional) You can as well add precise ephemeris and clocks at this stage. They are required for long baselines.
+
+- Now proceed to the options by pushing "Options" button.
+
+Set positioning mode you need. Usually it's "Kinematic" or "Static".
+
+Choose "Elevation Mask" value. Usually it's 15-20.
+Push "SNR Mask" button and set the value you need. This will help you to avoid satellites with low signal strength.
+
+Turn on "Rec Dynamics" to estimate receiver velocity and acceleration. Use it for DGPS/DGNSS or Kinematic modes.
+Select used navigation systems.
+
+Go to the "Setting2" tab.
+Set "Integer Ambiguity Res" to Fix and Hold. In this mode continuously static integer ambiguities are estimated and resolved. If the validation OK, the ambiguities are tightly constrained to the resolved values.
+
+Set "Max Pos Var for AR" and turn on "AR Filter" on the right.
+
+Switch to "Positions" tab.
+Select "Base Station". Choose "Average of Single Position" for any log to average single point solution or "RINEX Header Position" to use approximate position in RINEX .obs header.
+
+- Press "OK" button and "Execute" in the main window.
+You'll see green process bar. Wait until "done" label. It could take quite a lot of time if your logs are big. In that case window could not answer. Just chill and relax.
+
+- After that you'll see something similar in your output folder. The .pos file with "__event" will contain timestamps if you had them during your job.
+Open RTKLIB RTKPLOT and drag and drop your .pos file. If you see green points that mean that they're fix (Q=1), orange mean float (Q=2), red - single (Q=5).
+
+----------------------------------------
+PIX4D
+----------------------------------------
+- One you have your GCP you can insert them manually (directly on the images) or adding the coordinates and then checking the position on the images.
+- Start the processing choosing you favourite settings and have fun!
+
+
+
