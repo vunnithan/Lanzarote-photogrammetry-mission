@@ -1,0 +1,59 @@
+Reach RTK procedures for Lanzarote
+
+Reach Rover, Reach Base, Reach Mini New, Reach Mini Old
+
+Pre survey check
+- make sure batteries are fully charged
+- check and make sure that the base can connect to the correct NTRIP server
+- mobile phone connection, so that the Base can connect to the strip server
+- tripod, tape measure and survey pole ready
+- check rover and base software, reach view updates needed ?
+- for the mini's charged USB power bank, cables and round disks (multi path) for the antenna
+
+Survey setting
+
+FIRST properly setup the tripod for the Base, measure height, remember the 65mm needs to be added to the height
+THEN power on the BASE and wait for it to start connect to the NTRIP server via phone. 
+
+Try to:
+- get a good fix with mobile phone connections
+- make sure that you are logging
+
+DO NOT TOUCH OR MOVE THE BASE NOW !!
+
+Next setup the rover on the survey pole. 
+Accurately measure the height.
+
+Switch on the Rover making sure that it does not connect to the same plan hotspot as the BASE
+
+Wait and make sure that it is getting a LORA feed from the Base. Check that you have proper line of sight.
+
+Setup the survey in reach view with proper antenna heights. Use auto logging fix and float to test the first point. Finally make sure that you are logging data.
+
+NOW go and layout the drone target GCPs along with the LIDAR targets.
+
+Survey the points, remember:
+- try to get fixes
+- hold the pole straight
+- return to one or two survey points to double check accuracy.
+
+
+Post survey
+
+- connect and download all data
+
+PUT ROVER AND BASE IN SEPARATE FOLDERS; DO NOT MIX THESE UP !!
+
+Do quick check of data
+Do quick post processing:
+
+  convert the base and rover ublox to rihex format
+  use rtkprocess to with rover obs and nav plus base obs
+  use rtkplot to check results
+
+NOTE WGS 84 Ellipsoidal heights are not ORTHOMETRIC 
+
+Links to for interesting info:
+
+-- http://www.tuffwing.com/support/Reach_precision_gps_ppk_setup.html#Base_Station_Post_Processing
+ 
